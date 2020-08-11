@@ -48,7 +48,7 @@ def get_sum_of_pages(sum):
 def visit_every_pages(sum, url, collection):
     '访问每一页文章列表，抓取每一篇文章的网址'
     for i in range(1, sum+1):
-        goal = 'https://blog.csdn.net/hesorchen/article/list/'+str(i)
+        goal = url+'/article/list/'+str(i)
         html = get_html(goal).decode('utf-8')
         goal = '<a href="'+url+'/article/details/'
         a = html.find(goal)+9
@@ -87,10 +87,10 @@ while True:
     print('正在刷第'+str(ct)+'次  总共刷了'+str(ct-1)+'次   当前访客数：'+get_fangkeshu(url))
     ct += 1
     increase_number_of_visitors(collection)
-    stop = random.randint(10, 20)
+    print(collection)
+    stop = random.randint(60, 70)
     print('暂停'+str(stop)+'秒')
     time.sleep(stop)
-
 
 ```
 
