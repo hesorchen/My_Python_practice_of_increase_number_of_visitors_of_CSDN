@@ -14,7 +14,6 @@
 #### 源代码
 ```py
 import urllib.request
-import time
 import random
 
 
@@ -63,6 +62,7 @@ def visit_every_pages(sum, url, collection):
 def increase_number_of_visitors(collection):
     '刷取访客'
     for i in collection:
+        print(i)
         get_html(i)
 
 
@@ -75,6 +75,15 @@ def get_fangkeshu(url):
     return html[a:b]
 
 
+def unique(colllection):
+    '文章链接去重'
+    collection2 = []
+    for i in collection:
+        if i not in collection2:
+            collection2.append(i)
+    return collection2
+
+
 url = input('请输入您的CSDN主页地址，例如https://blog.csdn.net/hesorchen\n')
 sum1 = get_sum_of_articles(url)
 sum = get_sum_of_pages(sum1)
@@ -82,15 +91,13 @@ print('总共有'+str(sum)+'页   '+str(sum1)+'篇文章')
 
 collection = []
 visit_every_pages(sum, url, collection)
+collection = unique(collection)
+
 ct = int(1)
 while True:
     print('正在刷第'+str(ct)+'次  总共刷了'+str(ct-1)+'次   当前访客数：'+get_fangkeshu(url))
     ct += 1
     increase_number_of_visitors(collection)
-    stop = random.randint(60, 70)
-    print('暂停'+str(stop)+'秒')
-    time.sleep(stop)
-秒')
 
 ```
 
