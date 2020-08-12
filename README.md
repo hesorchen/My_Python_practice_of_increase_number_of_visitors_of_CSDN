@@ -13,6 +13,12 @@
 
 #### 源代码
 ```py
+'''
+Author: hesorchen
+Date: 2020-08-11 07:38:28
+LastEditTime: 2020-08-12 17:29:08
+Description: https://hesorchen.github.io/
+'''
 import urllib.request
 import random
 
@@ -62,7 +68,7 @@ def visit_every_pages(sum, url, collection):
 def increase_number_of_visitors(collection):
     '刷取访客'
     for i in collection:
-        print(i)
+        print('当前访问文章：', i)
         get_html(i)
 
 
@@ -98,6 +104,7 @@ while True:
     print('正在刷第'+str(ct)+'次  总共刷了'+str(ct-1)+'次   当前访客数：'+get_fangkeshu(url))
     ct += 1
     increase_number_of_visitors(collection)
+
 
 ```
 
