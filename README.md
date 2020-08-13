@@ -16,7 +16,7 @@
 '''
 Author: hesorchen
 Date: 2020-08-11 07:38:28
-LastEditTime: 2020-08-12 17:29:08
+LastEditTime: 2020-08-13 18:40:39
 Description: https://hesorchen.github.io/
 '''
 import urllib.request
@@ -26,7 +26,7 @@ import random
 def get_html(url):
     '抓取二进制形式的html'
     req = urllib.request.Request(url)
-    req.add_header('user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36 Edg/84.0.522.52')
+    req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36 Edg/84.0.522.52')
     response = urllib.request.urlopen(req)
     html = response.read()
     return html
@@ -69,7 +69,12 @@ def increase_number_of_visitors(collection):
     '刷取访客'
     for i in collection:
         print('当前访问文章：', i)
-        get_html(i)
+        proxy_support = urllib.request.ProxyHandler(
+            {'http': '101.37.118.54:8888'})
+        opener = urllib.request.build_opener(proxy_support)
+        opener.addheaders = [
+            ('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36 Edg/84.0.522.52')]
+        opener.open(i)
 
 
 def get_fangkeshu(url):
@@ -104,7 +109,5 @@ while True:
     print('正在刷第'+str(ct)+'次  总共刷了'+str(ct-1)+'次   当前访客数：'+get_fangkeshu(url))
     ct += 1
     increase_number_of_visitors(collection)
-
-
 ```
 
