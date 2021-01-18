@@ -10,15 +10,10 @@
 4. 如果对你有些许帮助的话，请给个Star
 
 
+2021.1.18更代码
 
 #### 源代码
 ```py
-'''
-Author: hesorchen
-Date: 2020-08-11 07:38:28
-LastEditTime: 2020-08-13 18:40:39
-Description: https://hesorchen.github.io/
-'''
 import urllib.request
 import random
 
@@ -59,10 +54,10 @@ def visit_every_pages(sum, url, collection):
         a = html.find(goal)+9
         while a != -1:
             a = html.find(goal, a)+9
-            b = html.find('\" target=\"_blank', a, a+255)
+            b = html.find('\"  data-report-click', a, a+255)
             if b == -1:
                 break
-            collection.append(html[a:b])
+            collection.append(html[a:a+57])
 
 
 def increase_number_of_visitors(collection):
@@ -96,18 +91,18 @@ def unique(colllection):
 
 
 url = input('请输入您的CSDN主页地址，例如https://blog.csdn.net/hesorchen\n')
-sum1 = get_sum_of_articles(url)
+sum1 = int(input('请输入您的原创博客总数\n'))
 sum = get_sum_of_pages(sum1)
 print('总共有'+str(sum)+'页   '+str(sum1)+'篇文章')
-
 collection = []
 visit_every_pages(sum, url, collection)
 collection = unique(collection)
-
 ct = int(1)
 while True:
     print('正在刷第'+str(ct)+'次  总共刷了'+str(ct-1)+'次   当前访客数：'+get_fangkeshu(url))
     ct += 1
+    print(len(collection))
     increase_number_of_visitors(collection)
+
 ```
 
