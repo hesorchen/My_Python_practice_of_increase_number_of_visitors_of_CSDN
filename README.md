@@ -57,7 +57,7 @@ def visit_every_pages(sum, url, collection):
             b = html.find('\"  data-report-click', a, a+255)
             if b == -1:
                 break
-            collection.append(html[a:a+57])
+            collection.append(html[a:a+26+len(url)])
 
 
 def increase_number_of_visitors(collection):
@@ -101,8 +101,8 @@ ct = int(1)
 while True:
     print('正在刷第'+str(ct)+'次  总共刷了'+str(ct-1)+'次   当前访客数：'+get_fangkeshu(url))
     ct += 1
-    print(len(collection))
     increase_number_of_visitors(collection)
+
 
 ```
 
